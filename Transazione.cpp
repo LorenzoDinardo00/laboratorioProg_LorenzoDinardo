@@ -4,6 +4,7 @@
 #include "Transazione.h"
 #include <string>
 
+Transazione::Transazione() {}
 Transazione::Transazione(std::string destination_address, std::string source_address, float amount,
                          std::string transation_ID, Transazione::transation_type type, std::string timestamp) {
     this->destination_address = destination_address;

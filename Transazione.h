@@ -16,6 +16,7 @@ private:
     TransationType type;
     std::string timestamp;
 public:
+    Transazione();
     Transazione(std::string destination_address, std::string source_address, float amount, std::string transation_ID, TransationType type, std::string timestamp );
     std::string getSourceAddress();
     std::string getDestinationAddress();
