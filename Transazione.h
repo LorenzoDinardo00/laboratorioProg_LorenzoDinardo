@@ -24,7 +24,7 @@ public:
     std::string getTransationID();
     TransationType getTransationType();
     std::string getTimestamp();
-
+    std::string toString();
 
 };
 #endif //LABORATORIOPROG_LORENZODINARDO_TRANSAZIONE_H

@@ -6,7 +6,7 @@
 
 Transazione::Transazione() {}
 Transazione::Transazione(std::string destination_address, std::string source_address, float amount,
-                         std::string transation_ID, Transazione::transation_type type, std::string timestamp) {
+                         std::string transation_ID, TransationType type, std::string timestamp) {
     this->destination_address = destination_address;
     this->source_address = source_address;
     this->amount = amount;
@@ -33,4 +33,7 @@ TransationType Transazione::getTransationType() {
 }
 std::string Transazione::getTimestamp() {
     return this->timestamp;
+}
+std::string Transazione:: toString(){
+    return destination_address + " to " + source_address + " - amount: " + std::to_string(amount);
 }
