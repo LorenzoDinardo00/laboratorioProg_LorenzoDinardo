@@ -4,19 +4,20 @@
 
 #ifndef LABORATORIOPROG_LORENZODINARDO_CONTO_H
 #define LABORATORIOPROG_LORENZODINARDO_CONTO_H
+#include <list>
 #include<string>
 #include "Transazione.h"
 class Conto {
 private:
     std::string identifier;
     float amount;
-    Transazione* transaction_list;
+    std::list<Transazione*> transaction_list;
 public:
-    Conto(std::string identifier, float amount, Transazione* transaction_list);
+    Conto(std::string identifier, float amount, std::list<Transazione*> transaction_list);
     std::string getIdentifier();
     float getAmount();
-    Transazione* getTransactionList();
-    void addTransaction(Transazione transaction);
+    std::list<Transazione*> getTransactionList();
+    void addTransaction(Transazione* transaction);
 
 };
 

@@ -5,5 +5,5 @@
 class Observer{
 public:
     Observer();
-    virtual void update(Conto bankAccount, Transazione transaction) = 0;
+    virtual void update(Conto* bankAccount, Transazione* transaction) = 0;
 };

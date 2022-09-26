@@ -5,10 +5,10 @@
 #include <iostream>
 #include "FileManager.h"
 class FileManager: public Observer {
-    void update(Conto bankAccount, Transazione transaction){
+    void update(Conto* bankAccount, Transazione* transaction){
         std::ofstream outfile;
-        outfile.open(bankAccount.getIdentifier() + ".txt");
-        outfile<<transaction.toString()<< std::endl;
+        outfile.open(bankAccount->getIdentifier() + ".txt");
+        outfile<<transaction->toString()<< std::endl;
         outfile.close();
     }
 };
