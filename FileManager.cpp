@@ -3,7 +3,8 @@
 //
 #include <fstream>
 #include <iostream>
-#include "FileManager.h"
+#include "Conto.h"
+#include "Observer.h"
 class FileManager: public Observer {
     void update(Conto* bankAccount, Transazione* transaction){
         std::ofstream outfile;

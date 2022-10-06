@@ -2,7 +2,8 @@
 // Created by Lorenzo Dinardo on 26/09/22.
 //
 #include "Conto.h"
-#include "Observer.cpp"
+#include "Observer.h"
+
 class Subject{
 public:
     Subject();

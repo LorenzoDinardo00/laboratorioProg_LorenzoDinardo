@@ -4,11 +4,6 @@
 
 #include "ConcreteSubject.h"
 
-ConcreteSubject &ConcreteSubject::getInstance() {
-    static ConcreteSubject INSTANCE;
-    return INSTANCE;
-}
-
 void ConcreteSubject::registerObserver(Observer *observer) {
     observers.push_back(observer);
 }
