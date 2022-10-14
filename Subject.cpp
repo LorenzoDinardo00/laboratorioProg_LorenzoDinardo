@@ -6,7 +6,7 @@
 
 class Subject{
 public:
-    Subject();
+    Subject()= default;
     virtual void registerObserver(Observer* observer) = 0;
     virtual void removeObserver(Observer* observer) = 0;
     virtual void notifyObserver(Conto* bankAccount, Transazione* transaction) = 0;

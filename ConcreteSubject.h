@@ -11,8 +11,8 @@
 class ConcreteSubject: public Subject {
 private:
     std::list<Observer*> observers;
-    ConcreteSubject();
-    ~ConcreteSubject();
+    ConcreteSubject() = default;
+    ~ConcreteSubject()=default;
 
 public:
     static ConcreteSubject& getInstance() {

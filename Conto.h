@@ -13,14 +13,14 @@ class Conto {
 private:
     std::string identifier;
     float amount;
-    std::list<Transazione*> transaction_list;
-    Cliente owner;
+    std::list<std::shared_ptr<Transazione>> transaction_list;
+    const Cliente& owner;
 public:
-    Conto(std::string identifier, float amount, std::list<Transazione*> transaction_list, Cliente owner);
+    Conto(std::string identifier, float amount, const Cliente& owner);
     std::string getIdentifier();
     float getAmount();
-    std::list<Transazione*> getTransactionList();
-    void addTransaction(Transazione* transaction);
+    std::list<std::shared_ptr<Transazione>> getTransactionList();
+    void addTransaction(const std::shared_ptr<Transazione>& transaction);
     Cliente getOwner();
 };
 
