@@ -7,9 +7,10 @@
 #include <string>
 #include <utility>
 
-Conto::Conto(std::string identifier, float amount, const Cliente& owner) : owner(owner) {
+Conto::Conto(std::string identifier, float amount,std::string id_owner)  {
     this->identifier = std::move(identifier);
     this->amount=amount;
+    this->id_owner = std::move(id_owner);
 }
 std::string Conto::getIdentifier() {
     return this->identifier;
@@ -30,13 +31,10 @@ void Conto::addTransaction(const std::shared_ptr<Transazione>& transaction) {
 
     }else if(this->identifier== transaction->getDestinationAddress()){
         this->amount += transaction->getAmount();
-    }else{
-        throw std::runtime_error("conto non trovato");
     }
-    auto& concreteSubject = ConcreteSubject::getInstance();
-    concreteSubject.notifyObserver(this, transaction.get());
+
 
 }
-Cliente Conto::getOwner() {
-    return this->owner;
+std::string Conto::getOwner() {
+    return this->id_owner;
 }

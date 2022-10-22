@@ -3,16 +3,18 @@
 //
 #include "Transazione.h"
 #include <string>
+#include <utility>
 
 Transazione::Transazione() {}
 Transazione::Transazione(std::string destination_address, std::string source_address, float amount,
-                         std::string transation_ID, TransationType type, std::string timestamp) {
-    this->destination_address = destination_address;
-    this->source_address = source_address;
+                         std::string transation_ID,
+                         std::string timestamp, TransationType type) {
+    this->destination_address = std::move(destination_address);
+    this->source_address = std::move(source_address);
     this->amount = amount;
-    this->transation_ID= transation_ID;
+    this->transation_ID= std::move(transation_ID);
     this->type = type;
-    this->timestamp = timestamp;
+    this->timestamp = std::move(timestamp);
 }
 
 std::string Transazione::getSourceAddress() {

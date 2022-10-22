@@ -13,6 +13,7 @@ private:
     std::string starting_date;
     std::string idOwner;
 public:
+    Cliente()= default;
     Cliente(std::string name, std::string surname, std::string starting_date, std::string idOwner);
     std::string getName();
     std::string getSurname();

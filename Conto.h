@@ -14,14 +14,15 @@ private:
     std::string identifier;
     float amount;
     std::list<std::shared_ptr<Transazione>> transaction_list;
-    const Cliente& owner;
+    std::string id_owner;
 public:
-    Conto(std::string identifier, float amount, const Cliente& owner);
+    Conto() = default;
+    Conto(std::string identifier, float amount,std::string id_owner);
     std::string getIdentifier();
     float getAmount();
     std::list<std::shared_ptr<Transazione>> getTransactionList();
     void addTransaction(const std::shared_ptr<Transazione>& transaction);
-    Cliente getOwner();
+    std::string getOwner();
 };
 
 #endif //LABORATORIOPROG_LORENZODINARDO_CONTO_H

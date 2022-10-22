@@ -3,4 +3,4 @@ project(laboratorioProg_LorenzoDinardo)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(laboratorioProg_LorenzoDinardo main.cpp Transazione.h Transazione.cpp Conto.cpp Conto.h Cliente.cpp Cliente.h Subject.cpp FileManager.cpp ConcreteSubject.cpp ConcreteSubject.h Observer.h)
+add_executable(laboratorioProg_LorenzoDinardo main.cpp Transazione.h Transazione.cpp Conto.cpp Conto.h Cliente.cpp Cliente.h Subject.cpp FileManager.cpp ConcreteSubject.cpp ConcreteSubject.h Observer.h TransactionManager.cpp TransactionManager.h)

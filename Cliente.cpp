@@ -3,11 +3,13 @@
 //
 
 #include "Cliente.h"
+
+#include <utility>
 Cliente::Cliente(std::string name, std::string surname, std::string starting_date, std::string idOwner) {
-    this->name = name;
-    this->surname = surname;
-    this-> starting_date= starting_date;
-    this-> idOwner = idOwner;
+    this->name = std::move(name);
+    this->surname = std::move(surname);
+    this-> starting_date= std::move(starting_date);
+    this-> idOwner = std::move(idOwner);
 }
 std::string Cliente::getName() {
     return this->name;
