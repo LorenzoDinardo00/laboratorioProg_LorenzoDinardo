@@ -12,15 +12,7 @@ Conto::Conto(std::string identifier, float amount,std::string id_owner)  {
     this->amount=amount;
     this->id_owner = std::move(id_owner);
 }
-std::string Conto::getIdentifier() {
-    return this->identifier;
-}
-float Conto::getAmount() {
-    return this->amount;
-}
-std::list<std::shared_ptr<Transazione>> Conto::getTransactionList() {
-    return this->transaction_list;
-}
+
 void Conto::addTransaction(const std::shared_ptr<Transazione>& transaction) {
     transaction_list.push_back(transaction);
     if (this->identifier == transaction->getSourceAddress()){
@@ -35,6 +27,16 @@ void Conto::addTransaction(const std::shared_ptr<Transazione>& transaction) {
 
 
 }
-std::string Conto::getOwner() {
-    return this->id_owner;
+
+const std::string &Conto::getIdentifier() const {
+    return identifier;
+}
+
+float Conto::getAmount() const {
+    return amount;
+}
+
+
+const std::string &Conto::getIdOwner() const {
+    return id_owner;
 }

@@ -6,27 +6,19 @@
 #define LABORATORIOPROG_LORENZODINARDO_CONCRETESUBJECT_H
 #include "Subject.cpp"
 #include <list>
-#include "Observer.h"
 
 class ConcreteSubject: public Subject {
 private:
     std::list<Observer*> observers;
-    ConcreteSubject() = default;
-    ~ConcreteSubject()=default;
 
 public:
-    static ConcreteSubject& getInstance() {
-        static ConcreteSubject instance;
-        return instance;
-    }
-    void registerObserver(Observer* observer);
-    void removeObserver(Observer* observer);
-    void notifyObserver(Conto* bankAccount, Transazione* transaction);
+    void registerObserver(Observer* observer) override;
+    void removeObserver(Observer* observer) override;
+    void notifyObserver(const TransactionManager &t, const Cliente &cliente) override;
+    void notifyObserver(const TransactionManager &t, const Conto &conto) override;
+    void notifyObserver(const TransactionManager &t, const Transazione &transazione) override;
 
-    ConcreteSubject(const ConcreteSubject&) = delete;
-    ConcreteSubject(ConcreteSubject&&) = delete;
-    ConcreteSubject& operator=(const ConcreteSubject&) = delete;
-    ConcreteSubject& operator=(ConcreteSubject&&) = delete;
+
 };
 
 

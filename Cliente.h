@@ -15,10 +15,14 @@ private:
 public:
     Cliente()= default;
     Cliente(std::string name, std::string surname, std::string starting_date, std::string idOwner);
-    std::string getName();
-    std::string getSurname();
-    std::string getStartingDate();
-    std::string getIdOwner();
+
+    const std::string &getIdOwner() const;
+
+    const std::string &getSurname() const;
+
+    const std::string &getStartingDate() const;
+
+    const std::string &getName() const;
 };
 
 

@@ -6,11 +6,14 @@
 #define LABORATORIOPROG_LORENZODINARDO_OBSERVER_H
 
 #include "Conto.h"
+#include "TransactionManager.h"
 
 class Observer {
 public:
-    Observer();
-    virtual void update(Conto* bankAccount, Transazione* transaction) = 0;
+    Observer() = default;
+    virtual void update(  const TransactionManager & t, const Cliente& cliente) = 0;
+    virtual void update(const TransactionManager& t, const Conto& conto)= 0;
+    virtual void update(const TransactionManager& t, const Transazione& transazione)=0;
 };
 
 #endif //LABORATORIOPROG_LORENZODINARDO_OBSERVER_H

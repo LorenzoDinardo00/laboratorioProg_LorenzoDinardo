@@ -11,7 +11,9 @@
 #include "Cliente.h"
 #include "Conto.h"
 #include "Transazione.h"
-class TransactionManager {
+#include "ConcreteSubject.h"
+
+class TransactionManager : public ConcreteSubject{
 private:
     int counterConto;
     int counterTransazione;
@@ -25,6 +27,7 @@ public:
     void CreazioneTransazione(const std::string &destination_address, const std::string &source_address, float amount);
     std::string AggiungiCliente(const std::string &name, const std::string &surname);
     void Stampavalori();
+    void lettorevalori(const std::string &filecliente,const std::string &fileconto,const std::string &filetransazione);
 };
 
 

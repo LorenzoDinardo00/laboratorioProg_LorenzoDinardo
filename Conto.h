@@ -18,11 +18,15 @@ private:
 public:
     Conto() = default;
     Conto(std::string identifier, float amount,std::string id_owner);
-    std::string getIdentifier();
-    float getAmount();
-    std::list<std::shared_ptr<Transazione>> getTransactionList();
+
+    const std::string &getIdentifier() const;
+
+    float getAmount() const;
+
+    const std::string &getIdOwner() const;
+
     void addTransaction(const std::shared_ptr<Transazione>& transaction);
-    std::string getOwner();
+
 };
 
 #endif //LABORATORIOPROG_LORENZODINARDO_CONTO_H

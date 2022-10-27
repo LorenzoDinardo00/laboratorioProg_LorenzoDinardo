@@ -17,25 +17,31 @@ Transazione::Transazione(std::string destination_address, std::string source_add
     this->timestamp = std::move(timestamp);
 }
 
-std::string Transazione::getSourceAddress() {
-    return this->source_address;
-}
-std::string Transazione::getDestinationAddress() {
-    return this-> destination_address;
-}
-float Transazione::getAmount() const {
-    return this->amount;
-}
-std::string Transazione::getTransationID() {
-    return this->transation_ID;
-}
 
-TransationType Transazione::getTransationType() {
-    return this->type;
-}
-std::string Transazione::getTimestamp() {
-    return this->timestamp;
-}
 std::string Transazione:: toString(){
     return destination_address + " to " + source_address + " - amount: " + std::to_string(amount);
+}
+
+const std::string &Transazione::getDestinationAddress() const {
+    return destination_address;
+}
+
+const std::string &Transazione::getSourceAddress() const {
+    return source_address;
+}
+
+float Transazione::getAmount() const {
+    return amount;
+}
+
+const std::string &Transazione::getTransationId() const {
+    return transation_ID;
+}
+
+const std::string &Transazione::getTimestamp() const {
+    return timestamp;
+}
+
+TransationType Transazione::getType() const {
+    return type;
 }

@@ -11,16 +11,21 @@ Cliente::Cliente(std::string name, std::string surname, std::string starting_dat
     this-> starting_date= std::move(starting_date);
     this-> idOwner = std::move(idOwner);
 }
-std::string Cliente::getName() {
-    return this->name;
+
+
+const std::string &Cliente::getName() const {
+    return name;
 }
-std::string Cliente::getSurname() {
-    return this->surname;
+
+const std::string &Cliente::getSurname() const {
+    return surname;
 }
-std::string Cliente::getStartingDate() {
-    return this-> starting_date;
+
+const std::string &Cliente::getStartingDate() const {
+    return starting_date;
 }
-std::string Cliente::getIdOwner() {
-    return this->idOwner;
+
+const std::string &Cliente::getIdOwner() const {
+    return idOwner;
 }
 
