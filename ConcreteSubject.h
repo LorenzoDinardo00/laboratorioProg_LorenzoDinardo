@@ -10,7 +10,7 @@
 class ConcreteSubject: public Subject {
 private:
     std::list<Observer*> observers;
-
+//std::unique_ptr<Observer> observers;
 public:
     void registerObserver(Observer* observer) override;
     void removeObserver(Observer* observer) override;
