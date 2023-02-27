@@ -2,5 +2,10 @@ cmake_minimum_required(VERSION 3.23)
 project(laboratorioProg_LorenzoDinardo)
 
 set(CMAKE_CXX_STANDARD 14)
-
+add_subdirectory(./googletest)
+include_directories(runAllTests googletest/googletest/include)
+include_directories(runAllTests googletest/googlemock/include)
+set(SOURCE_FILES cliente.cpp Cliente.h ConcreteSubject.cpp ConcreteSubject.h Conto.cpp Conto.h FileManager.cpp  Logger.cpp Observer.h Subject.cpp TransactionManager.cpp TransactionManager.h Transazione.cpp Transazione.h)
+add_executable(runAllTests ${SOURCE_FILES} maintest.cpp)
 add_executable(laboratorioProg_LorenzoDinardo main.cpp Transazione.h Transazione.cpp Conto.cpp Conto.h Cliente.cpp Cliente.h Subject.cpp FileManager.cpp ConcreteSubject.cpp ConcreteSubject.h Observer.h TransactionManager.cpp TransactionManager.h Logger.cpp)
+target_link_libraries(runAllTests gtest gtest_main gmock gmock_main)

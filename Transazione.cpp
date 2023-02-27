@@ -18,10 +18,6 @@ Transazione::Transazione(std::string destination_address, std::string source_add
 }
 
 
-std::string Transazione:: toString(){
-    return destination_address + " to " + source_address + " - amount: " + std::to_string(amount);
-}
-
 const std::string &Transazione::getDestinationAddress() const {
     return destination_address;
 }

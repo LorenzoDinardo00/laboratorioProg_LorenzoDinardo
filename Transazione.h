@@ -32,6 +32,5 @@ public:
 
     TransationType getType() const;
 
-    std::string toString();
 };
 #endif //LABORATORIOPROG_LORENZODINARDO_TRANSAZIONE_H
