@@ -21,6 +21,24 @@ public:
 
     void update(const TransactionManager &t, const Transazione &transazione) override {
         std::cout<< "creazione nuova transazione "<<std::endl;
-        std::cout << "valore transazione: "<<transazione.getAmount() << " ID transazione: "<<transazione.getTransationId() <<" tipo transazione: "<< transazione.getType() <<" indirizzo sorgente: "<<transazione.getSourceAddress()<<" indirizzo destinazione: "<<transazione.getDestinationAddress()<<" ora della transazione: "<<transazione.getTimestamp()<< std::endl;
+        std::string TypeString;
+        switch(transazione.getType()){
+            case bonifico: {
+                TypeString = "bonifico";
+                break;
+            }
+            case giroconto:{
+                TypeString = "giroconto";
+                break;
+            }
+            case versamento:{
+                TypeString="versamento";
+                break;
+            }
+            default:
+                TypeString="non identificato";
+                break;
+        }
+        std::cout << "valore transazione: "<<transazione.getAmount() << " ID transazione: "<<transazione.getTransationId() <<" tipo transazione: "<< TypeString <<" indirizzo sorgente: "<<transazione.getSourceAddress()<<" indirizzo destinazione: "<<transazione.getDestinationAddress()<<" ora della transazione: "<<transazione.getTimestamp()<< std::endl;
     }
 };

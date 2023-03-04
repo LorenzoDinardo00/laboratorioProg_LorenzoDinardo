@@ -27,6 +27,7 @@ public:
 
     void addTransaction(const std::shared_ptr<Transazione>& transaction);
 
+    const std::list<std::shared_ptr<Transazione>> &getTransactionList() const;
 };
 
 #endif //LABORATORIOPROG_LORENZODINARDO_CONTO_H

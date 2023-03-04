@@ -40,3 +40,7 @@ float Conto::getAmount() const {
 const std::string &Conto::getIdOwner() const {
     return id_owner;
 }
+
+const std::list<std::shared_ptr<Transazione>> &Conto::getTransactionList() const {
+    return transaction_list;
+}
