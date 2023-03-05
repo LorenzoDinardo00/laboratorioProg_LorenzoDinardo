@@ -36,7 +36,7 @@ std::string TransactionManager::AggiungiCliente(const std::string &name, const s
     return idOwner;
 }
 
-void
+std::shared_ptr<Transazione>
 TransactionManager::CreazioneTransazione(const std::string &destination_address, const std::string &source_address, float amount) {
     TransationType tipotransazione;
     std::string idTransaction= "transazione" +std::to_string(counterTransazione);
@@ -44,11 +44,20 @@ TransactionManager::CreazioneTransazione(const std::string &destination_address,
     std::time_t time2 = std::chrono::system_clock::to_time_t(time);
     Conto& contodest = conti.at(destination_address);
     std::shared_ptr<Transazione >t;
+
     if(source_address.empty()) {
          t = std::make_shared<Transazione>(destination_address, "-", amount,
                                                                        idTransaction, std::ctime(&time2), versamento);
     contodest.addTransaction(t);
     }else {
+        auto contoid = conti.find(destination_address);
+        if(contoid == conti.end()){
+            throw std::runtime_error("conto destinazione inesistente");
+        }
+        auto contoid2 = conti.find(source_address);
+        if(contoid2 == conti.end()){
+            throw std::runtime_error("conto sorgente inesistente");
+        }
         Conto &contosour = conti.at(source_address);
         Cliente &clientedest = clienti.at(contodest.getIdOwner());
         Cliente &clientesour = clienti.at(contosour.getIdOwner());
@@ -65,6 +74,7 @@ TransactionManager::CreazioneTransazione(const std::string &destination_address,
     //concreteSubject.notifyObserver(this, transaction.get());
     counterTransazione++;
     notifyObserver(*this, *t.get() );
+    return(t);
 }
 
 void TransactionManager::Stampavalori() {
@@ -77,6 +87,7 @@ void TransactionManager::Stampavalori() {
 
 
 }
+
 
 void TransactionManager::lettorevalori(const std::string &filecliente, const std::string &fileconto,
                                        const std::string &filetransazione) {

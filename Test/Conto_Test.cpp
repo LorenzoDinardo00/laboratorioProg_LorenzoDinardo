@@ -34,4 +34,8 @@ TEST(ContoTest, TransactionListTest) {
     // Check if all transactions are in the list
     ASSERT_EQ(conto.getTransactionList().size(), 2);
     //non parte il ciclo for
+    for(auto t:conto.getTransactionList()){
+        if(t==transaction2)
+            SUCCEED();
+    }
 }
