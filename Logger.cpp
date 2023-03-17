@@ -39,6 +39,6 @@ public:
                 TypeString="non identificato";
                 break;
         }
-        std::cout << "valore transazione: "<<transazione.getAmount() << " ID transazione: "<<transazione.getTransationId() <<" tipo transazione: "<< TypeString <<" indirizzo sorgente: "<<transazione.getSourceAddress()<<" indirizzo destinazione: "<<transazione.getDestinationAddress()<<" ora della transazione: "<<transazione.getTimestamp()<< std::endl;
+        std::cout << "valore transazione: "<<transazione.getAmount() <<" -"<< " ID transazione: "<<transazione.getTransationId() <<" -"<<" tipo transazione: "<< TypeString <<" -"<<" indirizzo sorgente: "<<transazione.getSourceAddress()<<" -"<<" indirizzo destinazione: "<<transazione.getDestinationAddress()<<" -"<<" ora della transazione: "<<transazione.getTimestamp()<< std::endl;
     }
 };

@@ -4,7 +4,7 @@
 #include "gtest/gtest.h"
 #include "../TransactionManager.h"
 
-TEST(TransactionManagerTest, CLIENTidentifierTest) {
+TEST(TransactionManagerTest, ContoIdentifierTest) {
     TransactionManager transaction_manager;
     std::string idcliente1=transaction_manager.AggiungiCliente("paolo","lore");
     std::string identifier = transaction_manager.CreazioneConto(500,idcliente1);

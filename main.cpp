@@ -12,7 +12,7 @@ int main() {
     manager.registerObserver(&stampaschermo);
     manager.registerObserver(&stampafile);
     manager.lettorevalori("filecliente","fileconto","filetransazione");
-    /*manager.Stampavalori();
+    /* manager.Stampavalori();
     std::string idOwner1 = manager.AggiungiCliente("lorenzo","Dinardo");
 
     std::string idOwner2 = manager.AggiungiCliente("Ida","Basta");

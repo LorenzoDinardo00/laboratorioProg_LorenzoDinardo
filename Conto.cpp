@@ -23,15 +23,8 @@ void Conto::addTransaction(const std::shared_ptr<Transazione>& transaction) {
 
     }else if(this->identifier== transaction->getDestinationAddress()){
         this->amount += transaction->getAmount();
-    }
-    if(transaction->getAmount()<0){
-        throw std::runtime_error("amount negative!");
-    }
-    //aggiunto ora
-    if(this->amount<0){
-        throw std::runtime_error("account balance negative");
+    }else throw std::runtime_error("identifier non è ne destinazione ne sorgente");
 
-        }
     }
 
 
