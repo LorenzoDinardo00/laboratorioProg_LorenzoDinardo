@@ -3,31 +3,21 @@
 //
 #include "gtest/gtest.h"
 #include"../Conto.h"
-/*
-TEST(Conto,AddTransactionConto){
-    Conto conto("identifier", 100 , "Cliente1");
-    Conto conto2("identifier2",10,"Cliente2");
-    std::shared_ptr<Transazione> transazione1=std::make_shared<Transazione>("identifier2","identifier",20,"transazione0","",bonifico);
-    conto.addTransaction(transazione1);
-    ASSERT_EQ(80,conto.getAmount());
-    ASSERT_EQ(30,conto2.getAmount());
-}
 
-*/
 
 TEST(Conto,AmountNegative){
     Conto conto("identifier", 100 , "Cliente1");
     std::shared_ptr<Transazione> transazione1=std::make_shared<Transazione>("id2","identifier",120,"transazione0","",bonifico);
     ASSERT_THROW(conto.addTransaction(transazione1),std::runtime_error);
 }
-TEST(Conto,ValidSourceAddress){
+TEST(Conto,AddTransactionWithInvalidSourceAddressThrows){
     Conto conto("identifier", 100 , "Cliente1");
     std::shared_ptr<Transazione> transazione1=std::make_shared<Transazione>("id2","identifier",80,"transazione0","",bonifico);
     std::shared_ptr<Transazione> transazione2=std::make_shared<Transazione>("id2","id3",80,"transazione0","",bonifico);
 
     ASSERT_THROW(conto.addTransaction(transazione2),std::runtime_error);
 }
-TEST(Conto,ValidDestinationAddress){
+TEST(Conto,AddTransactionWithInvalidDestinationAddressThrows){
     Conto conto("identifier", 100 , "Cliente1");
     std::shared_ptr<Transazione> transazione1=std::make_shared<Transazione>("identifier","12345",80,"transazione0","",bonifico);
     std::shared_ptr<Transazione> transazione2=std::make_shared<Transazione>("id2","id3",80,"transazione0","",bonifico);
@@ -43,7 +33,6 @@ TEST(ContoTest, TransactionListTest) {
     conto.addTransaction(transaction2);
 
     ASSERT_EQ(conto.getTransactionList().size(), 2);
-    //non parte il ciclo for
     for(auto t:conto.getTransactionList()){
         if(t==transaction2)
             SUCCEED();

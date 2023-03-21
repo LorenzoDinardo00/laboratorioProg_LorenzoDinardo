@@ -87,7 +87,6 @@ TransactionManager::create_transaction(const std::string &destination_address, c
     destinationAccount.addTransaction(transaction);
     sourceAccount.addTransaction(transaction);
 
-    //concreteSubject.notifyObserver(this, transaction.get());
     counterTransazione++;
     notifyObserver(*transaction.get() );
     return(transaction);

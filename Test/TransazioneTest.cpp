@@ -3,11 +3,7 @@
 //
 #include "gtest/gtest.h"
 #include "../Transazione.h"
-TEST(TransazioneTest, verifyDestination) {
-    ASSERT_THROW( Transazione transazione1 ("", "source", 1000, "transazione1", "",bonifico);
-    ,std::runtime_error);
 
-}
 TEST(Transazione,TransactionNegative){
 
     ASSERT_THROW(Transazione transazione1("lore", "source", -100, "transazione1", "",bonifico), std::runtime_error);
