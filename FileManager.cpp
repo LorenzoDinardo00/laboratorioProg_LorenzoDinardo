@@ -18,22 +18,22 @@ public:
         this->filetransazione=std::move(filetransazione);
     }
     void update(const TransactionManager &t, const Cliente &cliente) override {
-        std::ofstream f(filecliente, std::ios_base::app);
+        std::ofstream file(filecliente, std::ios_base::app);
         std::string date = cliente.getStartingDate();
         date.pop_back();
-        f << cliente.getName() <<" "<< cliente.getSurname() <<" "<< date <<" "<<cliente.getIdOwner()<< std::endl;
+        file << cliente.getName() << " " << cliente.getSurname() << " " << date << " " << cliente.getIdOwner() << std::endl;
 
     }
 
     void update(const TransactionManager &t, const Conto &conto) override {
-        std::ofstream f(fileconto, std::ios_base::app);
-        f << conto.getIdentifier() << " "<<conto.getAmount() <<" "<<conto.getIdOwner() << std::endl;
+        std::ofstream file(fileconto, std::ios_base::app);
+        file << conto.getIdentifier() << " " << conto.getAmount() << " " << conto.getIdOwner() << std::endl;
     }
 
     void update(const TransactionManager &t, const Transazione &transazione) override {
-        std::ofstream f(filetransazione, std::ios_base::app);
+        std::ofstream file(filetransazione, std::ios_base::app);
         std::string data = transazione.getTimestamp();
         data.pop_back();
-        f <<transazione.getType() <<" "<<transazione.getDestinationAddress()<<" "<< transazione.getSourceAddress()<<" "<<transazione.getAmount() << " "<< transazione.getTransationId() <<" "<<data<<" "<<  std::endl;
+        file << transazione.getType() << " " << transazione.getDestinationAddress() << " " << transazione.getSourceAddress() << " " << transazione.getAmount() << " " << transazione.getTransationId() << " " << data << " " << std::endl;
     }
 };

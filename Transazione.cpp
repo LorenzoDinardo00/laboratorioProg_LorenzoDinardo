@@ -5,7 +5,7 @@
 #include <string>
 #include <utility>
 
-Transazione::Transazione() {}
+
 Transazione::Transazione(std::string destination_address, std::string source_address, float amount,
                          std::string transation_ID,
                          std::string timestamp, TransationType type) {
@@ -16,12 +16,14 @@ Transazione::Transazione(std::string destination_address, std::string source_add
     this->type = type;
     this->timestamp = std::move(timestamp);
     if(this->destination_address == "")
-       throw std::runtime_error("destinazione inesistente");
+        throw std::runtime_error("destinazione inesistente");
     if(this->source_address == "" && this->type== bonifico )
         throw std::runtime_error("sorgente inesistente in un bonifico");
 
     if(this->amount <= 0)
         throw std::runtime_error("transazione con amount negativo o nullo");
+    if(this->source_address==this->destination_address)
+        throw std::runtime_error("transazione con mittente uguale a destinazione");
 
 
 

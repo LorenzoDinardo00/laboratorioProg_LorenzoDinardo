@@ -31,10 +31,6 @@ public:
                 TypeString = "giroconto";
                 break;
             }
-            case versamento:{
-                TypeString="versamento";
-                break;
-            }
             default:
                 TypeString="non identificato";
                 break;

@@ -4,18 +4,38 @@
 
 #include <iostream>
 #include "TransactionManager.h"
-#include "ConcreteSubject.h"
 #include <fstream>
 #include <sstream>
+void TransactionManager::registerObserver(Observer *observer) {
+    observers.push_back(observer);
+}
+void TransactionManager::removeObserver(Observer *observer) {
+    observers.remove(observer);
+}
 
-std::string TransactionManager::CreazioneConto(float amount, const std::string &idOwner) {
+void TransactionManager::notifyObserver(const Cliente &cliente) {
+    for (auto & o : observers){
+        o->update(*this,cliente);
+    }
+}
+void TransactionManager::notifyObserver(const Conto &conto) {
+    for (auto &observer: observers) {
+        observer->update(*this, conto);
+    }
+}
+
+void TransactionManager::notifyObserver(const Transazione &transazione) {
+    for (auto &observer: observers) {
+        observer->update(*this, transazione);
+    }
+}
+std::string TransactionManager::create_account(float amount, const std::string &idOwner) {
     std::string identifier ="conto"+ std::to_string(counterConto);
-    Conto conto1 (identifier, 0, idOwner);
+    Conto account (identifier, amount, idOwner);
 
     counterConto ++;
-    conti[identifier] = conto1;
-    notifyObserver(*this,conto1);
-    this->CreazioneTransazione(identifier,"",amount);
+    conti[identifier] = account;
+    notifyObserver(account);
     return identifier;
 }
 
@@ -25,62 +45,58 @@ TransactionManager::TransactionManager() {
     counterCliente=0;
 }
 
-std::string TransactionManager::AggiungiCliente(const std::string &name, const std::string &surname) {
+std::string TransactionManager::add_client(const std::string &name, const std::string &surname) {
     std::string idOwner="Cliente" +std::to_string(counterCliente);
     std::chrono::time_point<std::chrono::system_clock>time= std::chrono::system_clock::now();
-    std::time_t time2 = std::chrono::system_clock::to_time_t(time);
-    Cliente cliente1(name, surname, std::ctime(&time2), idOwner);
-    clienti[idOwner] = cliente1;
+    std::time_t time_t = std::chrono::system_clock::to_time_t(time); //conversione in formato leggibile (std::time_t)
+    Cliente client(name, surname, std::ctime(&time_t), idOwner);
+    clienti[idOwner] = client;
     counterCliente++;
-    notifyObserver(*this,cliente1);
+    notifyObserver(client);
     return idOwner;
 }
 
 std::shared_ptr<Transazione>
-TransactionManager::CreazioneTransazione(const std::string &destination_address, const std::string &source_address, float amount) {
-    TransationType tipotransazione;
+TransactionManager::create_transaction(const std::string &destination_address, const std::string &source_address, float amount) {
+    TransationType transaction_time;
     std::string idTransaction= "transazione" +std::to_string(counterTransazione);
     std::chrono::time_point<std::chrono::system_clock>time= std::chrono::system_clock::now();
-    std::time_t time2 = std::chrono::system_clock::to_time_t(time);
-    Conto& contodest = conti.at(destination_address);
-    std::shared_ptr<Transazione >t;
+    std::time_t time_t = std::chrono::system_clock::to_time_t(time);
+    Conto& destinationAccount = conti.at(destination_address);
+    std::shared_ptr<Transazione >transaction;
 
-    if(source_address.empty()) {
-         t = std::make_shared<Transazione>(destination_address, "-", amount,
-                                                                       idTransaction, std::ctime(&time2), versamento);
-    contodest.addTransaction(t);
-    }else {
-        auto contoid = conti.find(destination_address);
-        if(contoid == conti.end()){
-            throw std::runtime_error("conto destinazione inesistente");
-        }
-        auto contoid2 = conti.find(source_address);
-        if(contoid2 == conti.end()){
-            throw std::runtime_error("conto sorgente inesistente");
-        }
-        Conto &contosour = conti.at(source_address);
-        Cliente &clientedest = clienti.at(contodest.getIdOwner());
-        Cliente &clientesour = clienti.at(contosour.getIdOwner());
-        if (clientedest.getIdOwner() == clientesour.getIdOwner())
-            tipotransazione = giroconto;
-        else
-            tipotransazione = bonifico;
-            t = std::make_shared<Transazione>(destination_address, source_address,
-                                                                                  amount, idTransaction,
-                                                                                  std::ctime(&time2), tipotransazione);
-        contodest.addTransaction(t);
-        contosour.addTransaction(t);
+
+    auto destinationAccountIterator = conti.find(destination_address);
+    if(destinationAccountIterator == conti.end()){
+        throw std::runtime_error("conto destinazione inesistente");
     }
+    auto sourceAccountIt = conti.find(source_address);
+    if(sourceAccountIt == conti.end()){
+        throw std::runtime_error("conto sorgente inesistente");
+    }
+    Conto &sourceAccount = conti.at(source_address);
+    Cliente &clientdest = clienti.at(destinationAccount.getIdOwner());
+    Cliente &clientsour = clienti.at(sourceAccount.getIdOwner());
+    if (clientdest.getIdOwner() == clientsour.getIdOwner())
+        transaction_time = giroconto;
+    else
+        transaction_time = bonifico;
+    transaction = std::make_shared<Transazione>(destination_address, source_address,
+                                                amount, idTransaction,
+                                                std::ctime(&time_t), transaction_time);
+    destinationAccount.addTransaction(transaction);
+    sourceAccount.addTransaction(transaction);
+
     //concreteSubject.notifyObserver(this, transaction.get());
     counterTransazione++;
-    notifyObserver(*this, *t.get() );
-    return(t);
+    notifyObserver(*transaction.get() );
+    return(transaction);
 }
 
-void TransactionManager::Stampavalori() {
-    for (auto conto:conti){
+void TransactionManager::print_account() {
+    for (auto account:conti){
 
-        std::cout<<conto.first <<" "<< conto.second.getAmount()<<std::endl;
+        std::cout << account.first << " " << account.second.getAmount() << " " << account.second.getIdOwner() << std::endl;
 
 
     }
@@ -89,35 +105,35 @@ void TransactionManager::Stampavalori() {
 }
 
 
-void TransactionManager::lettorevalori(const std::string &filecliente, const std::string &fileconto,
-                                       const std::string &filetransazione) {
-std::ifstream filec(filecliente,std::ios_base::in);
-std::string line;
-while(std::getline(filec,line)) {
-    std::istringstream iss(line);
-    std::string name;
-    std::string surname;
-    std::string starting_date_day_name;
-    std::string starting_date_month;
-    int day;
-    std::string date;
-    int year;
-    std::string idOwner;
-    if (!(iss >> name >> surname >> starting_date_day_name >>starting_date_month>>day>>date>>year>> idOwner)) { throw std::runtime_error("errore"); } // error // process pair (a,b)
-    std::ostringstream  starting_date;
-    starting_date<< starting_date_day_name<<" "<< starting_date_month << " "<<day<<" "<<date<<" "<<year<<std::endl;
+void TransactionManager::read_values(const std::string &filecliente, const std::string &fileconto,
+                                     const std::string &filetransazione) {
+    std::ifstream filec(filecliente,std::ios_base::in);
+    std::string line;
+    while(std::getline(filec,line)) {
+        std::istringstream iss(line);
+        std::string name;
+        std::string surname;
+        std::string starting_date_day_name;
+        std::string starting_date_month;
+        int day;
+        std::string date;
+        int year;
+        std::string idOwner;
+        if (!(iss >> name >> surname >> starting_date_day_name >>starting_date_month>>day>>date>>year>> idOwner)) { throw std::runtime_error("errore"); } // error // process pair (a,b)
+        std::ostringstream  starting_date;
+        starting_date<< starting_date_day_name<<" "<< starting_date_month << " "<<day<<" "<<date<<" "<<year<<std::endl;
 
-    Cliente cliente(name,surname,starting_date.str(),idOwner);
-    clienti[idOwner] = cliente;
-    counterCliente++;
-}
+        Cliente cliente(name,surname,starting_date.str(),idOwner);
+        clienti[idOwner] = cliente;
+        counterCliente++;
+    }
     std::ifstream fileco(fileconto,std::ios_base::in);
     while(std::getline(fileco,line)) {
         std::istringstream iss(line);
         std::string identifier;
         float amount;
         std::string id_owner;
-        if (!(iss >> identifier >> amount >> id_owner)) { throw std::runtime_error("errore"); } // error // process pair (a,b)
+        if (!(iss >> identifier >> amount >> id_owner)) { throw std::runtime_error("errore"); }
 
 
         Conto conto(identifier,amount,id_owner);

@@ -2,7 +2,6 @@
 // Created by Lorenzo Dinardo on 22/08/22.
 //
 
-#include "ConcreteSubject.h"
 #include "Conto.h"
 #include <string>
 #include <utility>
@@ -25,7 +24,7 @@ void Conto::addTransaction(const std::shared_ptr<Transazione>& transaction) {
         this->amount += transaction->getAmount();
     }else throw std::runtime_error("identifier non è ne destinazione ne sorgente");
 
-    }
+}
 
 
 

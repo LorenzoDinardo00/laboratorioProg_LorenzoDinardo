@@ -11,9 +11,10 @@
 #include "Cliente.h"
 #include "Conto.h"
 #include "Transazione.h"
-#include "ConcreteSubject.h"
+#include "Subject.h"
+#include "Observer.h"
 
-class TransactionManager : public ConcreteSubject{
+class TransactionManager : public Subject{
 private:
     int counterConto;
     int counterTransazione;
@@ -21,14 +22,21 @@ private:
     std::map<std::string,Cliente>clienti;
     std::map<std::string ,Conto>conti;
     std::vector<std::shared_ptr<Transazione>> transazioni;
+    std::list<Observer*> observers;
+
 public:
     TransactionManager();
-    std::string CreazioneConto(float amount, const std::string& idOwner);
+    void registerObserver(Observer* observer) override;
+    void removeObserver(Observer* observer) override;
+    void notifyObserver(const Cliente &cliente) override;
+    void notifyObserver(const Conto &conto) override;
+    void notifyObserver(const Transazione &transazione) override;
+    std::string create_account(float amount, const std::string& idOwner);
     std::shared_ptr<Transazione>
-    CreazioneTransazione(const std::string &destination_address, const std::string &source_address, float amount);
-    std::string AggiungiCliente(const std::string &name, const std::string &surname);
-    void Stampavalori();
-    void lettorevalori(const std::string &filecliente,const std::string &fileconto,const std::string &filetransazione);
+    create_transaction(const std::string &destination_address, const std::string &source_address, float amount);
+    std::string add_client(const std::string &name, const std::string &surname);
+    void print_account();
+    void read_values(const std::string &filecliente, const std::string &fileconto, const std::string &filetransazione);
 };
 
 

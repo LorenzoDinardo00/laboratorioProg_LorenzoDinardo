@@ -5,7 +5,7 @@
 
 #ifndef LABORATORIOPROG_LORENZODINARDO_TRANSAZIONE_H
 #define LABORATORIOPROG_LORENZODINARDO_TRANSAZIONE_H
-enum TransationType { bonifico, giroconto, versamento };
+enum TransationType { bonifico, giroconto };
 
 class Transazione{
 private:
@@ -16,7 +16,6 @@ private:
     std::string timestamp;
     TransationType type;
 public:
-    Transazione();
     Transazione(std::string destination_address, std::string source_address, float amount, std::string transation_ID,
                 std::string timestamp, TransationType type);
 

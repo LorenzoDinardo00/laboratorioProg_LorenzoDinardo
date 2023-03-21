@@ -10,7 +10,7 @@ public:
     Subject()= default;
     virtual void registerObserver(Observer* observer)=0;
     virtual void removeObserver(Observer* observer)=0;
-    virtual void notifyObserver(const TransactionManager &t, const Cliente &cliente)=0;
-    virtual void notifyObserver(const TransactionManager &t, const Conto &conto)=0;
-    virtual void notifyObserver(const TransactionManager &t, const Transazione &transazione)=0;
+    virtual void notifyObserver( const Cliente &cliente)=0;
+    virtual void notifyObserver( const Conto &conto)=0;
+    virtual void notifyObserver( const Transazione &transazione)=0;
 };
