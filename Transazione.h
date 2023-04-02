@@ -9,15 +9,15 @@ enum TransationType { bonifico, giroconto };
 
 class Transazione{
 private:
-    std::string destination_address;
-    std::string source_address;
+    std::string destinationAddress;
+    std::string sourceAddress;
     float amount;
-    std::string transation_ID;;
+    std::string transationID;;
     std::string timestamp;
     TransationType type;
 public:
-    Transazione(std::string destination_address, std::string source_address, float amount, std::string transation_ID,
-                std::string timestamp, TransationType type);
+    Transazione(const std::string &destinationAddress, const std::string &sourceAddress, float amount, const std::string &transationId,
+                const std::string &timeStamp, TransationType type);
 
     const std::string &getDestinationAddress() const;
 

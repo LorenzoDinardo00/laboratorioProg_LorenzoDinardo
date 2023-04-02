@@ -31,12 +31,12 @@ public:
     void notifyObserver(const Cliente &cliente) override;
     void notifyObserver(const Conto &conto) override;
     void notifyObserver(const Transazione &transazione) override;
-    std::string create_account(float amount, const std::string& idOwner);
+    std::string createAccount(float amount, const std::string& idOwner);
     std::shared_ptr<Transazione>
-    create_transaction(const std::string &destination_address, const std::string &source_address, float amount);
-    std::string add_client(const std::string &name, const std::string &surname);
-    void print_account();
-    void read_values(const std::string &filecliente, const std::string &fileconto, const std::string &filetransazione);
+    createTransaction(const std::string &destinationAddress, const std::string &sourceAddress, float amount);
+    std::string addClient(const std::string &name, const std::string &surname);
+    void printAccount();
+    void readValues(const std::string &filecliente, const std::string &fileconto, const std::string &filetransazione);
 };
 
 

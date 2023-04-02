@@ -6,23 +6,23 @@
 #include <utility>
 
 
-Transazione::Transazione(std::string destination_address, std::string source_address, float amount,
-                         std::string transation_ID,
-                         std::string timestamp, TransationType type) {
-    this->destination_address = std::move(destination_address);
-    this->source_address = std::move(source_address);
+Transazione::Transazione(const std::string &destinationAddress, const std::string &sourceAddress, float amount,
+                         const std::string &transationId,
+                         const std::string &timeStamp, TransationType type) {
+    this->destinationAddress = destinationAddress;
+    this->sourceAddress = sourceAddress;
     this->amount = amount;
-    this->transation_ID= std::move(transation_ID);
+    this->transationID= transationId;
     this->type = type;
-    this->timestamp = std::move(timestamp);
-    if(this->destination_address == "")
+    this->timestamp = timeStamp;
+    if(this->destinationAddress == "")
         throw std::runtime_error("destinazione inesistente");
-    if(this->source_address == "" && this->type== bonifico )
+    if(this->sourceAddress == "" && this->type == bonifico )
         throw std::runtime_error("sorgente inesistente in un bonifico");
 
     if(this->amount <= 0)
         throw std::runtime_error("transazione con amount negativo o nullo");
-    if(this->source_address==this->destination_address)
+    if(this->sourceAddress == this->destinationAddress)
         throw std::runtime_error("transazione con mittente uguale a destinazione");
 
 
@@ -32,11 +32,11 @@ Transazione::Transazione(std::string destination_address, std::string source_add
 
 
 const std::string &Transazione::getDestinationAddress() const {
-    return destination_address;
+    return destinationAddress;
 }
 
 const std::string &Transazione::getSourceAddress() const {
-    return source_address;
+    return sourceAddress;
 }
 
 float Transazione::getAmount() const {
@@ -44,7 +44,7 @@ float Transazione::getAmount() const {
 }
 
 const std::string &Transazione::getTransationId() const {
-    return transation_ID;
+    return transationID;
 }
 
 const std::string &Transazione::getTimestamp() const {

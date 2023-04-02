@@ -19,7 +19,7 @@ private:
     std::string filetransazione;
 
 public:
-    FileManager(std::string filecliente, std::string fileconto, std::string filetransazione);
+    FileManager(const std::string &filecliente, const std::string &fileconto, const std::string &filetransazione);
 
     void update(const TransactionManager &t, const Cliente &cliente) override;
 

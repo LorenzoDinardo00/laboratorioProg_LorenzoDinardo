@@ -10,11 +10,11 @@ class Cliente {
 private:
     std::string name;
     std::string surname;
-    std::string starting_date;
+    std::string startingDate;
     std::string idOwner;
 public:
     Cliente()= default;
-    Cliente(std::string name, std::string surname, std::string starting_date, std::string idOwner);
+    Cliente(const std::string &name, const std::string &surname, const std::string &startingDate, const std::string &idOwner);
 
     const std::string &getIdOwner() const;
 

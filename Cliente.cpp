@@ -5,11 +5,11 @@
 #include "Cliente.h"
 
 #include <utility>
-Cliente::Cliente(std::string name, std::string surname, std::string starting_date, std::string idOwner) {
-    this->name = std::move(name);
-    this->surname = std::move(surname);
-    this-> starting_date= std::move(starting_date);
-    this-> idOwner = std::move(idOwner);
+Cliente::Cliente(const std::string &name, const std::string &surname, const std::string &startingDate, const std::string &idOwner) {
+    this->name = name;
+    this->surname =surname;
+    this-> startingDate= startingDate;
+    this-> idOwner = idOwner;
 }
 
 
@@ -22,7 +22,7 @@ const std::string &Cliente::getSurname() const {
 }
 
 const std::string &Cliente::getStartingDate() const {
-    return starting_date;
+    return startingDate;
 }
 
 const std::string &Cliente::getIdOwner() const {

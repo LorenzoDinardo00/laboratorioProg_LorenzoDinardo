@@ -12,10 +12,10 @@ private:
     std::string filetransazione;
 
 public:
-    FileManager(std::string filecliente, std::string fileconto, std::string filetransazione){
-        this->filecliente=std::move(filecliente);
-        this->fileconto=std::move(fileconto);
-        this->filetransazione=std::move(filetransazione);
+    FileManager(const std::string &filecliente, const std::string &fileconto,const  std::string &filetransazione){
+        this->filecliente=filecliente;
+        this->fileconto=fileconto;
+        this->filetransazione=filetransazione;
     }
     void update(const TransactionManager &t, const Cliente &cliente) override {
         std::ofstream file(filecliente, std::ios_base::app);

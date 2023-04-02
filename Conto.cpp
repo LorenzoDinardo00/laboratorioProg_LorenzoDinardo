@@ -6,10 +6,10 @@
 #include <string>
 #include <utility>
 
-Conto::Conto(std::string identifier, float amount,std::string id_owner)  {
-    this->identifier = std::move(identifier);
+Conto::Conto(const std::string &identifier, float amount,const std::string &idOwner)  {
+    this->identifier = identifier;
     this->amount=amount;
-    this->id_owner = std::move(id_owner);
+    this->idOwner = idOwner;
 }
 
 void Conto::addTransaction(const std::shared_ptr<Transazione>& transaction) {
@@ -39,7 +39,7 @@ float Conto::getAmount() const {
 
 
 const std::string &Conto::getIdOwner() const {
-    return id_owner;
+    return idOwner;
 }
 
 const std::list<std::shared_ptr<Transazione>> &Conto::getTransactionList() const {

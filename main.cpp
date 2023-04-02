@@ -11,15 +11,15 @@ int main() {
     FileManager file_logger("filecliente", "fileconto", "filetransazione");
     manager.registerObserver(&screenLogger);
     manager.registerObserver(&file_logger);
-    manager.read_values("filecliente", "fileconto", "filetransazione");
+    manager.readValues("filecliente", "fileconto", "filetransazione");
     /* manager.Stampavalori();
     std::string idOwner1 = manager.AggiungiCliente("lorenzo","Dinardo");
 
-    std::string idOwner2 = manager.add_client("Ida","Basta");
+    std::string idOwner2 = manager.addClient("Ida","Basta");
     std::string idConto = manager.CreazioneConto(1000, idOwner1);
-    std::string idConto2 = manager.create_account(5000,idOwner2);
-    manager.create_transaction(idConto,idConto2,500);
-    manager.print_account();
+    std::string idConto2 = manager.createAccount(5000,idOwner2);
+    manager.createTransaction(idConto,idConto2,500);
+    manager.printAccount();
      */
     int scelta = 0;
     while(scelta!=5){
@@ -39,7 +39,7 @@ int main() {
                 std::cout << "inserisci il cognome del cliente: ";
                 std::cin >> cognome;
                 //std::string cliente;
-                std::string idOwner = manager.add_client(nome, cognome);
+                std::string idOwner = manager.addClient(nome, cognome);
                 std::cout << "Cliente aggiunto correttamente\n";
                 break;
             }
@@ -50,7 +50,7 @@ int main() {
                 std::cin>>idOwner1;
                 std::cout<<"inserisci l'amount del conto: ";
                 std::cin>>amount;
-                manager.create_account(amount, idOwner1);
+                manager.createAccount(amount, idOwner1);
                 std::cout<<"conto creato con successo\n";
                 break;
             }
@@ -63,12 +63,12 @@ int main() {
                 std::cin>>idOwner2;
                 std::cout<<"inserisci l'amount della transazione: ";
                 std::cin>>amount;
-                manager.create_transaction(idOwner2, idOwner1, amount);
+                manager.createTransaction(idOwner2, idOwner1, amount);
                 std::cout<<"transazione creata con successo!\n";
                 break;
             }
             case 4:{
-                manager.print_account();
+                manager.printAccount();
                 break;
             }
             case 5:{

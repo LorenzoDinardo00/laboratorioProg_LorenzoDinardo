@@ -14,10 +14,10 @@ private:
     std::string identifier;
     float amount;
     std::list<std::shared_ptr<Transazione>> transaction_list;
-    std::string id_owner;
+    std::string idOwner;
 public:
     Conto() = default;
-    Conto(std::string identifier, float amount,std::string id_owner);
+    Conto(const std::string &identifier, float amount, const std::string &idOwner);
 
     const std::string &getIdentifier() const;
 
